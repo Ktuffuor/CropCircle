@@ -1,15 +1,25 @@
 from django.urls import path
-
-from . import views
+from .views import ApproveProductView, OrderDetailView, OrderListView, OrderStatusUpdateView, PendingProductApprovalsView, ProductOverviewView, RejectProductView, UserDetailView, UserListView
 
 urlpatterns = [
-    path('api/admin/users/', views.UserListView.as_view(), name='user-list'),
-    path('api/admin/users/<int:userId>', views.UserDetailView.as_view(), name='user-detail'),
-    path('api/admin/user/<int:userId>/status/', views.UserStatusUpdateView.as_view(), name='user-status-update'),
-    path('api/admin/products/pending/', views.PendingProductListView.as_view(), name='pending-products'),
-    path('api/admin/products/<int:productId>/approve/', views.approve_product, name='approve-product'),
-    path('api/admin/products/<int:productId>/reject/', views.reject_product, name='reject-product'),
-    path('api/admin/products/', views.ProductOverviewView.as_view(), name='product-overview'),
-    path('api/admin/orders/', views.OrderListView.as_view(), name='order-list'),
-    path('api/admin/orders/<int:orderId>', views.OrderDetailView.as_view(), name='order-detail'),
+
+    path('admin/users/', UserListView.as_view(), name='user-list'),
+
+    path('admin/users/<int:user_id>/', UserDetailView.as_view(), name='user-detail'),
+
+    path('admin/products/pending/', PendingProductApprovalsView.as_view(), name='pending-product-approvals'),
+
+    path('admin/products/pending/', PendingProductApprovalsView.as_view(), name='pending-product-approvals'),
+
+    path('admin/products/<int:product_id>/approve/', ApproveProductView.as_view(), name='approve-product'),
+
+    path('admin/products/<int:product_id>/reject/', RejectProductView.as_view(), name='reject-product'),
+
+    path('admin/products/', ProductOverviewView.as_view(), name='product-overview'),
+
+    path('admin/orders/', OrderListView.as_view(), name='order-list'),
+
+    path('admin/orders/<int:order_id>/', OrderDetailView.as_view(), name='order-detail'),
+
+    path('admin/orders/<int:order_id>/status/', OrderStatusUpdateView.as_view(), name='order-status-update'),
 ]

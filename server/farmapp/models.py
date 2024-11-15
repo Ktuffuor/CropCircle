@@ -68,7 +68,7 @@ class Product(models.Model):
     ]
     
     productId = models.AutoField(primary_key=True)
-    farmer = models.ForeignKey(Farmer, on_delete=models.CASCADE)
+    farmerId = models.ForeignKey(Farmer, on_delete=models.CASCADE) #changed farmer to farmerId
     productName = models.CharField(max_length=255)
     description = models.TextField()
     category = models.CharField(max_length=50)
